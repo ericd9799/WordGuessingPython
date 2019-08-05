@@ -21,8 +21,8 @@ def ReadWordsFromFile(filename):
     return data
 
 def SelectWordToGuess(w):
-    #Generate a random # to randomize word selected
-    rint = rd.randint(0, 6)
+    #Generate a random # to randomize word selected according to number of words in file
+    rint = rd.randint(0, len(w.columns)-1)
     WordToGuess = w[rint][0]
     #Below is used for testing. It will keep the word to be constant.
     #WordToGuess = w[0][0]
