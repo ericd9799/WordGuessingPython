@@ -5,4 +5,4 @@ As the title says, this is a word guessing game. The number of characters in the
 
 ## Modifications
 * Added line to display user's guesses so user does not need to keep in memory their guesses.
-* Added a newline for readability. 
+* Adjust intro, outro, and lines in between for readability.
