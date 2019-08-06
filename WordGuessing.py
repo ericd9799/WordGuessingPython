@@ -34,10 +34,12 @@ def Game(w):
     Guesses = []
     a = 0
 
+    print(f"\nThe word selected is {len(w)} characters long.\n")
+
     while True:
         if a <= len(Letters):
             #print(f"Guess count {a}")
-            print(f"This word is {len(w)} characters long. ")
+
             print(" ".join(Temp))
             #The below line will display the user's guess thus far
             print("Your guesses so far: ", " ".join([str(entry) for entry in Guesses]))
@@ -53,6 +55,7 @@ def Game(w):
                     if guess == Letters[i]:
                         Temp[i] = guess
 
+                #The below lines of code will check if the user has guessed all the correct letters
                 if "_" not in Temp:
                     print(f"Winner! You guessed the word, {w.upper()}!")
                     return True
@@ -77,13 +80,17 @@ def main():
 
         If you are ready to play, input Y: '''
 
+    outro = '''
+        Thank you for playing! Hope you enjoyed the game and
+        found it challenging!
+    '''
     if input(intro).upper() == 'Y':
         while True:
             w = ReadWordsFromFile("WordsToGuess.txt")
             SelectWordToGuess(w)
 
             if input("Play again (Y/N): ").upper() != 'Y':
-                print("Thank you for playing!")
+                print(outro)
                 break
     else:
         print("Not a problem! We will be here waiting for you!")
