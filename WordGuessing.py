@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#!/usr/bin/python3
 
 import random as rd
 import pandas as pd
@@ -39,7 +39,11 @@ def Game(w):
             #print(f"Guess count {a}")
             print(f"This word is {len(w)} characters long. ")
             print(" ".join(Temp))
+            #The below line will display the user's guess thus far
+            print("Your guesses so far: ", " ".join([str(entry) for entry in Guesses]))
             guess = input("What is your guess: ").upper()
+            #Add below line to print newline for spacing purposes
+            print("\n")
             if guess not in Guesses:
                 #List of letters user has guessed. Will be used to notify if user has already guessed letter.
                 Guesses.append(guess)
