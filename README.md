@@ -6,3 +6,4 @@ As the title says, this is a word guessing game. The number of characters in the
 ## Modifications
 * Added line to display user's guesses so user does not need to keep in memory their guesses.
 * Adjust intro, outro, and lines in between for readability.
+* Add code to allow user to decide if they would like to guess the entire word when there are 3 or less empty spaces left.
