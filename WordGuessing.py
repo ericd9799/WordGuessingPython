@@ -23,16 +23,24 @@ def ReadWordsFromFile(filename):
 def SelectWordToGuess(w):
     #Generate a random # to randomize word selected according to number of words in file
     rint = rd.randint(0, len(w.columns)-1)
-    WordToGuess = w[rint][0]
+    #WordToGuess = w[rint][0]
     #Below is used for testing. It will keep the word to be constant.
-    #WordToGuess = w[0][0]
+    WordToGuess = w[0][0]
     Game(WordToGuess)
+
+'''
+    Count the number of underscores in list to allow for user to guess entire
+    word at a specific time
+'''
+def CountUnderscores(lst):
+    return lst.count("_")
 
 def Game(w):
     Letters = list(w.upper())
-    Temp = ["_"] *len(w)
+    Temp = ["_"] * len(w)
     Guesses = []
     a = 0
+    GuessWholeWord = "Y"
 
     print(f"\nThe word selected is {len(w)} characters long.\n")
 
@@ -40,10 +48,24 @@ def Game(w):
         if a <= len(Letters):
             #print(f"Guess count {a}")
 
+
+
             print(" ".join(Temp))
             #The below line will display the user's guess thus far
             print("Your guesses so far: ", " ".join([str(entry) for entry in Guesses]))
-            guess = input("What is your guess: ").upper()
+
+            #The below lines of code will check if the user has guessed all the correct letters
+            if CountUnderscores(Temp) <= 3 and GuessWholeWord != "N":
+                if input("You can proceed with guessing the word. Would you like to? (Y/N)").upper() == "Y":
+                    if input("What is your guess?").upper() == w.upper():
+                        print(f"Winner! You guessed the word, {w.upper()}!")
+                        return True
+                        break
+                else:
+                    GuessWholeWord = "N"
+                    continue
+            else:
+                guess = input("What is your guess: ").upper()
             #Add below line to print newline for spacing purposes
             print("\n")
             if guess not in Guesses:
@@ -55,7 +77,8 @@ def Game(w):
                     if guess == Letters[i]:
                         Temp[i] = guess
 
-                #The below lines of code will check if the user has guessed all the correct letters
+
+
                 if "_" not in Temp:
                     print(f"Winner! You guessed the word, {w.upper()}!")
                     return True
